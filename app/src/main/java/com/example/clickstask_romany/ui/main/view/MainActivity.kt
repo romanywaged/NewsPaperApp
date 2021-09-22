@@ -65,8 +65,6 @@ class MainActivity : AppCompatActivity(), IArticleClickListener {
                     //Handle Error
                     progressPar.visibility = View.GONE
                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-
-
                 }
             }
         })
