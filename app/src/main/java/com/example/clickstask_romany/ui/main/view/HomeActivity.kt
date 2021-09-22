@@ -6,8 +6,6 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
@@ -24,27 +22,42 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clickstask_romany.data.model.Article
-import com.example.clickstask_romany.data.model.NewsResponse
 import com.example.clickstask_romany.ui.main.adapter.IArticleClickListener
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.clickstask_romany.utlis.CommonMethod
+import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(), IArticleClickListener {
+
+class HomeActivity : AppCompatActivity(), IArticleClickListener {
+
+
     private lateinit var mainViewModel: MainViewModel
     private lateinit var adapter: ArticleAdapter
     private lateinit var mLayoutManager: LinearLayoutManager
     private  var articles = ArrayList<Article>()
     private var  tempArticles = ArrayList<Article>()
+    private val commonMethod = CommonMethod()
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
 
 
-        setupViewModel()
-        setupObserver()
-        setUpRecycle()
-        setUpSearView()
+        if (commonMethod.checkNetworkConnection(this))
+        {
+            setupViewModel()
+            setupObserver()
+            setUpRecycle()
+            setUpSearView()
+        }
+        else
+        {
+            emptyList.visibility = View.VISIBLE
+            progressPar.visibility = View.GONE
+        }
+
     }
 
     private fun setupObserver() {
@@ -80,12 +93,16 @@ class MainActivity : AppCompatActivity(), IArticleClickListener {
         article_rv.adapter = adapter
     }
 
+
+
     private fun setupViewModel() {
         mainViewModel = ViewModelProviders.of(
             this,
             ViewModelFactory(ApiHelper(ApiServiceImp()))
         ).get(MainViewModel::class.java)
     }
+
+
 
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun articleClicked(img: ImageView, imgUrl:String,description: String, newsUrl: String, sourceName:String, Tittle:String)

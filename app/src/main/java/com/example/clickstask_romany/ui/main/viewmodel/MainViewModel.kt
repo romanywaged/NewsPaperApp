@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.clickstask_romany.data.model.NewsResponse
 import com.example.clickstask_romany.data.repository.MainRepository
+import com.example.clickstask_romany.utlis.CommonMethod
 import com.example.clickstask_romany.utlis.Resource
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,6 +15,7 @@ import io.reactivex.disposables.CompositeDisposable
 class MainViewModel(private val mainRepository: MainRepository) : ViewModel(){
     private val newsResponse = MutableLiveData<Resource<NewsResponse>>()
     private val compositeDisposable = CompositeDisposable()
+
 
     init {
         getNewsResponse()

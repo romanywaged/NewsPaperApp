@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".ui.main.view.MainActivity">
+    tools:context=".ui.main.view.HomeActivity">
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
@@ -29,10 +29,20 @@
     />
     <ProgressBar
         android:id="@+id/progressPar"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
+    <TextView
+        android:id="@+id/emptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:text="@string/no_data_found"
+        android:textColor="@color/color_description_activity"
+        android:visibility="gone" />
 </RelativeLayout>

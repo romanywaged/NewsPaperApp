@@ -2,11 +2,13 @@ package com.example.clickstask_romany.ui.main.adapter
 
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.clickstask_romany.R
@@ -30,12 +32,15 @@ class ArticleAdapter (private val articles : ArrayList<Article> ,
         return MyArticleViewholder(view)
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ArticleAdapter.MyArticleViewholder, position: Int) {
 
 
         var description = ""
         var imageUrlNull = ""
         var articleDate = ""
+        var articleTime = ""
         var commonMethod = CommonMethod()
         val article:Article = articles.get(position)
 
@@ -44,13 +49,18 @@ class ArticleAdapter (private val articles : ArrayList<Article> ,
 
 
 
-        if (article.publishedAt != null && article.publishedAt != "00:00:00")
+        if (article.publishedAt != null && article.publishedAt != "00:00:00") {
             articleDate = article.publishedAt?.let { commonMethod.separateString(it) }.toString()
+            articleTime = article.publishedAt?.let { commonMethod.separateTime(it) }.toString()
+        }
 
 
+        articleTime = commonMethod.convert24Hto12H(articleTime)
         holder.sourceName_txt.text = article.source!!.name
-        holder.articleDate.text = commonMethod.getDayNameFromDate(articleDate) + "-" +articleDate
+        holder.articleDate.text = commonMethod.getDayNameFromDate(articleDate) + commonMethod.getFormatDate(articleDate) + "  "+"-" + articleTime
         holder.articleTittle.text = article.title
+
+
         if (article.urlToImage!=null && article.description!=null) {
             holder.news_progressBar.visibility = View.GONE
             Glide.with(context).load(article.urlToImage).into(holder.articleImage)
@@ -85,6 +95,7 @@ class ArticleAdapter (private val articles : ArrayList<Article> ,
     override fun getItemCount(): Int {
         return articles.size
     }
+
 
     class MyArticleViewholder (itemView: View) : RecyclerView.ViewHolder(itemView){
         val sourceName_txt = itemView.source_name_row!!

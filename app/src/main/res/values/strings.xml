@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ClicksTask_Romany</string>
+    <string name="no_data_found">Please enable wifi or mobile data</string>
 </resources>
