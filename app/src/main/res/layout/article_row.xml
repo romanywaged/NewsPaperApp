@@ -11,11 +11,14 @@
     app:cardCornerRadius="25dp"
     android:elevation="0dp"
     app:cardElevation="0dp"
+    android:id="@+id/card_row"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="330dp"
+        android:background="@color/white"
         >
 
         <ImageView
@@ -23,11 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/news_image_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            />
+            android:contentDescription="TODO" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/source_image_row"
@@ -47,8 +50,8 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="15dp"
             android:layout_marginRight="15dp"
-            android:text="Text View"
             android:textSize="12sp"
+            android:textColor="@color/gray"
             app:layout_constraintEnd_toStartOf="@+id/source_image_row"
             app:layout_constraintTop_toBottomOf="@+id/article_image_row" />
 
@@ -59,13 +62,13 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="13dp"
             android:layout_marginRight="13dp"
-            android:text="TextView"
+            android:textColor="@color/gray"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/source_image_row"
             app:layout_constraintTop_toBottomOf="@+id/source_name_row" />
 
         <TextView
-            android:id="@+id/article_description_row"
+            android:id="@+id/article_tittle_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -73,7 +76,6 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
-            android:text="TextView"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -81,5 +83,15 @@
             app:layout_constraintHorizontal_bias="0.88"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/source_image_row" />
+
+        <ProgressBar
+            android:id="@+id/news_row_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/article_image_row"
+            app:layout_constraintEnd_toEndOf="@+id/article_image_row"
+            app:layout_constraintStart_toStartOf="@+id/article_image_row"
+            app:layout_constraintTop_toTopOf="@+id/article_image_row" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
