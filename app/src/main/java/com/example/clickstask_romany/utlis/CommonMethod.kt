@@ -47,8 +47,8 @@ class CommonMethod {
     fun convert24Hto12H(oldTime : String) : String
     {
         try {
-            val formatStr1 = SimpleDateFormat("HH:mm")
-            val formatStr2 = SimpleDateFormat("hh:mm a")
+            val formatStr1 = SimpleDateFormat("HH:mm", Locale("ar"))
+            val formatStr2 = SimpleDateFormat("hh:mm a", Locale("ar"))
             val formatStr3 = formatStr1.parse(oldTime)
             return formatStr2.format(formatStr3)
 
