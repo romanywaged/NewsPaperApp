@@ -63,7 +63,7 @@ class ArticleAdapter (private val articles : ArrayList<Article> ,
         }
         else {
             holder.newsProgressBar.visibility = View.GONE
-            Glide.with(context).load(R.drawable.news_image_bg).into(holder.articleImage)
+            Glide.with(context).load(R.drawable.placeholder).into(holder.articleImage)
             imageUrlNull = "No"
             description = "No description Found"
         }

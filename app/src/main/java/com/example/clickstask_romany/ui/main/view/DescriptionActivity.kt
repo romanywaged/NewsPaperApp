@@ -41,7 +41,7 @@ class DescriptionActivity : AppCompatActivity() {
         // set view
 
         if (imgUrl.equals("No")) {
-            Glide.with(this).load(R.drawable.news_image_bg).into(news_Img)
+            Glide.with(this).load(R.drawable.placeholder).into(news_Img)
         }else
         {
             Glide.with(this).load(imgUrl).into(news_Img)
